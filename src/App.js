@@ -7,11 +7,11 @@ const withImmer = (config) => (set, get, api) => {
   const update = (callback) => {
     set(produce(callback));
   };
-  return config(update, get, api);
+  return config(update, set, get, api);
 };
 
 const useStore = create(
-  withImmer((update) => {
+  withImmer((update, set) => {
     return {
       todos: [],
       addTodo: (text) =>
